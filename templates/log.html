@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>List of breeds</title>
+</head>
+<body>
+    {% for log in data %}
+        [{{ log.date }}][{{ log.method }}][{{ log.accept_type}}]{{ log.url }}<br/>
+    {% endfor %}
+</body>
+</html>

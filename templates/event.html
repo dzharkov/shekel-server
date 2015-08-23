@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{{ event.full_name }}</title>
+    <style type="text/css">
+   table {
+    width: 500px;
+    border-collapse: collapse;
+   }
+   td, th {
+    padding: 3px;
+    border: 1px solid black;
+   }
+   th {
+    background: #b0e0e6;
+   }
+  </style>
+</head>
+<body>
+    <h1>{{ event.full_name }}</h1>
+
+    <h2>Покупки</h2>
+    <table>
+        <tr><th>Кто купил</th><th>Что</th><th>Сколько</th><th>Потребители</th></tr>
+        {% for purchase in event.purchases.all %}
+            <tr>
+                <td>{{ purchase.owner }}</td>
+                <td>{{ purchase.name }}</td>
+                <td>{{ purchase.cost }}</td>
+                <td>
+                    <ul>
+                        {% for user in purchase.shared.all %}
+                            <li>{{ user }}</li>
+                        {% endfor %}
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Итого</h2>
+    <table>
+        <tr><th></th><th>Вкинулись</th><th>Употребили</th><th>Должны</th></tr>
+        {% for bu in summary %}
+            <tr>
+                <td><b>{{ bu.model }}</b></td>
+                <td>{{ bu.wasted }}</td>
+                <td>{{ bu.eaten }}</td>
+                <td>{{ bu.delta }}</td>
+            </tr>
+            {% for user in bu.users %}
+                <tr>
+                    <td>{{ user.model }}</td>
+                    <td>{{ user.wasted }}</td>
+                    <td>{{ user.eaten }}</td>
+                </tr>
+            {% endfor %}
+
+        {% endfor %}
+    </table>
+
+    <h2>Можно расплатиться так</h2>
+    {% for offer in offers %}
+        {{ offer.from }} -> {{ offer.to }}: {{ offer.sum }}<br/>
+    {% endfor %}
+
+</body>
+</html>
