@@ -4,7 +4,7 @@ import settings
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'(?P<id>\d+)/?', 'app.views.event'),
+    url(r'^(?P<id>\d+)/?', 'app.views.event'),
     url(r'^login/?', 'app.views.login'),
     url(r'^log/?$', 'app.views.show_log'),
     url(r'^(?P<model_name>[a-z]+)/?$', 'app.views.request_handler'),

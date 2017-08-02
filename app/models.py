@@ -96,6 +96,7 @@ class Purchase(models.Model):
         return {
             "id": self.id,
             "party_id": self.party_id,
+            "owner_id   ": self.owner_id,
             "name": self.name,
             "cost": self.cost,
             "shared_ids": ids(self.shared)

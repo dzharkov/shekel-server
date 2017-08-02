@@ -144,7 +144,7 @@ def login(request):
 
     return {'result': 0}
 
-@login_required
+#@login_required
 @csrf_exempt
 def request_handler(request, model_name, **kwargs):
     accept_type = request.META.get("HTTP_ACCEPT")
